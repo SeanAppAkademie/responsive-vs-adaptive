@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:responsive_vs_adaptive/main.dart';
 
 class ResponsiveDesignPage extends StatelessWidget {
   const ResponsiveDesignPage({super.key});
@@ -10,7 +12,7 @@ class ResponsiveDesignPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey.shade50,
-          title: Text('Responsive Design Demo'),
+          title: Text(AppLocale.hello.getString(context)),
           centerTitle: false,
           bottom: TabBar(
             indicatorColor: Colors.blue.shade200,
@@ -22,6 +24,15 @@ class ResponsiveDesignPage extends StatelessWidget {
               Tab(text: 'Spacer'),
             ],
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                // Übersetzung
+                FlutterLocalization.instance.translate('de');
+              },
+              icon: Icon(Icons.abc),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
@@ -51,7 +62,7 @@ class ResponsiveDesignPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Bildschirmbreite: ${screenWidth.toInt()}px',
+              AppLocale.screenWidth.getString(context),
               style: TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
